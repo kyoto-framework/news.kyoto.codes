@@ -14,7 +14,7 @@ RUN apk add --no-cache git npm
 
 # Build
 RUN go build -o news
-RUN (cd static; npm i; npm run build)
+RUN (cd assets; npm i; npm run build)
 
 # -------------
 # runtime stage
