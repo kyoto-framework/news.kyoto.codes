@@ -1,0 +1,9 @@
+{{ define "CommentsComponent" }}
+<div class="rounded-lg">
+    {{ range .Comments }}
+        <div class="py-2">
+            {{ template "CommentComponent" call . }}
+        </div>
+    {{ end }}
+</div>
+{{ end }}

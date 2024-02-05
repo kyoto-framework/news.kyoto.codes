@@ -5,16 +5,19 @@
   "main": "index.js",
   "scripts": {
 
-    "build:css:custom": "esbuild --minify --external:*.png --bundle css/index.css --outfile=../assets-dist/css/bundle.min.css",
-    "build:css:tailwind": "tailwindcss --minify -c tailwind.config.js -o ../assets-dist/css/tailwind.min.css",
-    "build:css:tailwind:w": "tailwindcss -w -c tailwind.config.js -o ../assets-dist/css/tailwind.min.css",
-    "build:css": "npm run build:css:custom && npm run build:css:tailwind",
+    "build:css:ast": "esbuild --minify --external:*.png --bundle css/index.css --outfile=../assets-dist/ast.min.css",
+    "build:css:tlw": "tailwindcss --minify -c tailwind.config.js -o ../assets-dist/tlw.min.css",
+    "build:css:tlw:w": "tailwindcss -w -c tailwind.config.js -o ../assets-dist/tlw.min.css",
+    "build:css": "npm run build:css:ast && npm run build:css:tlw",
 
-    "build:js": "mkdir -p ../assets-dist/js && cat js/*.js | esbuild --minify > ../assets-dist/js/bundle.min.js",
+    "build:js:ast": "mkdir -p ../assets-dist/js && cat js/*.js | esbuild --minify > ../assets-dist/ast.min.js",
+    "build:js": "npm run build:js:ast",
+
+    "build:lib": "rm -rf ../assets-dist/lib && cp -r ./lib ../assets-dist/lib",
 
     "build:img": "rm -rf ../assets-dist/img && cp -r ./img ../assets-dist/img",
 
-    "build": "npm run build:css && npm run build:js && npm run build:img"
+    "build": "npm run build:css && npm run build:js && npm run build:lib && npm run build:img"
   },
   "author": "",
   "license": "ISC",
